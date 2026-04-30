@@ -56,40 +56,6 @@ export default function RegisterScreen() {
     }
   };
 
-  const InputField = ({
-    icon,
-    placeholder,
-    value,
-    onChangeText,
-    secureTextEntry,
-    keyboardType,
-    showToggle,
-  }: any) => (
-    <View
-      className={`flex-row items-center ${t.surfaceAlt} rounded-2xl px-4 mb-4`}
-      style={{ height: 52 }}
-    >
-      <Ionicons name={icon} size={20} color={t.icon} />
-      <TextInput
-        className={`flex-1 ml-3 ${t.text}`}
-        style={{ height: '100%' }}
-        placeholder={placeholder}
-        placeholderTextColor={t.placeholder}
-        value={value}
-        onChangeText={onChangeText}
-        secureTextEntry={secureTextEntry}
-        keyboardType={keyboardType || 'default'}
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      {showToggle && (
-        <TouchableOpacity onPress={() => setShowPassword(!showPassword)} hitSlop={8}>
-          <Ionicons name={showPassword ? 'eye-off-outline' : 'eye-outline'} size={20} color={t.icon} />
-        </TouchableOpacity>
-      )}
-    </View>
-  );
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -129,28 +95,62 @@ export default function RegisterScreen() {
             borderColor: t.borderHex,
           }}
         >
-          <InputField
-            icon="mail-outline"
-            placeholder="Email"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-          />
-          <InputField
-            icon="lock-closed-outline"
-            placeholder="Пароль (мин. 6 символов)"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!showPassword}
-            showToggle
-          />
-          <InputField
-            icon="shield-checkmark-outline"
-            placeholder="Подтвердите пароль"
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            secureTextEntry={!showPassword}
-          />
+          <View
+            className={`flex-row items-center ${t.surfaceAlt} rounded-2xl px-4 mb-4`}
+            style={{ height: 52 }}
+          >
+            <Ionicons name="mail-outline" size={20} color={t.icon} />
+            <TextInput
+              className={`flex-1 ml-3 ${t.text}`}
+              style={{ height: '100%' }}
+              placeholder="Email"
+              placeholderTextColor={t.placeholder}
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
+
+          <View
+            className={`flex-row items-center ${t.surfaceAlt} rounded-2xl px-4 mb-4`}
+            style={{ height: 52 }}
+          >
+            <Ionicons name="lock-closed-outline" size={20} color={t.icon} />
+            <TextInput
+              className={`flex-1 ml-3 ${t.text}`}
+              style={{ height: '100%' }}
+              placeholder="Пароль (мин. 6 символов)"
+              placeholderTextColor={t.placeholder}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} hitSlop={8}>
+              <Ionicons name={showPassword ? 'eye-off-outline' : 'eye-outline'} size={20} color={t.icon} />
+            </TouchableOpacity>
+          </View>
+
+          <View
+            className={`flex-row items-center ${t.surfaceAlt} rounded-2xl px-4 mb-4`}
+            style={{ height: 52 }}
+          >
+            <Ionicons name="shield-checkmark-outline" size={20} color={t.icon} />
+            <TextInput
+              className={`flex-1 ml-3 ${t.text}`}
+              style={{ height: '100%' }}
+              placeholder="Подтвердите пароль"
+              placeholderTextColor={t.placeholder}
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry={!showPassword}
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </View>
 
           <TouchableOpacity
             onPress={handleRegister}
